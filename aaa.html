@@ -1,0 +1,61 @@
+   <html>
+
+
+
+<head>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+<div id="myDiv"></div>
+		
+<script>
+t=0;dt=0.1;
+m=10;
+n=100;
+		
+function loop(){	t=t+dt;	
+
+var x = [];
+var y = [];
+var z = [];
+var c = [];
+
+
+for(j=-n;j<n+1;j++){
+s=j/n*Math.PI;
+x.push(0)
+y.push(0)
+z.push(0)
+hue=j/n*358
+c.push("hsl("+hue+",100%,50%)")
+     x.push((Math.cos(s)));
+     y.push((Math.sin(s)));
+     z.push(0);
+     c.push("hsl("+hue+",100%,50%)")
+ }
+
+
+var layout = {  autosize: false,  width: 700,  height: 700}
+//,  paper_bgcolor: '#000000',plot_bgcolor: '#c7c7c7'}
+
+Plotly.newPlot('myDiv', 
+[{ type: 'scatter3d', mode: 'lines',x: x,y: y,z: z, 
+opacity: 0.7,line: {width: 5,color: c}}],
+
+layout);
+
+requestAnimationFrame(loop);
+}
+loop();
+			
+</script>
+</div>
+</body>
+
+
+
+
+
+
+<html>
